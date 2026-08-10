@@ -4,7 +4,7 @@
   <img width="600" height="auto" src="https://github.com/thorvg/thorvg.janitor/blob/main/title.png">
 </p>
 
-Web port of [thorvg.janitor](https://github.com/thorvg/thorvg.janitor), running on the [@thorvg/webcanvas](https://www.npmjs.com/package/@thorvg/webcanvas).
+Web port of [thorvg.janitor](https://github.com/thorvg/thorvg.demo.janitor), running on the [@thorvg/webcanvas](https://www.npmjs.com/package/@thorvg/webcanvas).
 
 ## Development
 
@@ -45,7 +45,7 @@ Cross-Origin-Embedder-Policy: require-corp
 
 ## Credits
 
-- **Original Project:** [ThorVG Janitor](https://github.com/thorvg/thorvg.janitor)
+- **Original Project:** [ThorVG Janitor](https://github.com/thorvg/thorvg.demo.janitor)
 - **Programming:** [LottieFiles](https://lottiefiles.com/) ([Jinny You](https://github.com/tinyjin))
 - **Spaceship Design:** [LottieFiles](https://lottiefiles.com/) (Lana Nguyen, Mau Ali)
 - **Sound Effects:** [Leszek_Szary](https://pixabay.com/users/freesound_community-46691455/)
