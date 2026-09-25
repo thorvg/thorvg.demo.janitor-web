@@ -51,6 +51,6 @@ Cross-Origin-Embedder-Policy: require-corp
 ## Credits
 
 - **Original Project:** [ThorVG Janitor](https://github.com/thorvg/thorvg.demo.janitor)
-- **Programming:** [LottieFiles](https://lottiefiles.com/) ([Jinny You](https://github.com/tinyjin))
+- **Web Port:** [LottieFiles](https://lottiefiles.com/) ([Jinny You](https://github.com/tinyjin))
 - **Spaceship Design:** [LottieFiles](https://lottiefiles.com/) (Lana Nguyen, Mau Ali)
 - **Sound Effects:** [Leszek_Szary](https://pixabay.com/users/freesound_community-46691455/)
