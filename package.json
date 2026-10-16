@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@thorvg/webcanvas": "^1.1.2"
+    "@thorvg/webcanvas": "^1.1.3"
   },
   "devDependencies": {
     "typescript": "^5.8.0",

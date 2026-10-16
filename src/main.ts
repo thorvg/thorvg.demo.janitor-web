@@ -11,6 +11,7 @@ import type {
 } from '@thorvg/webcanvas';
 
 import wasmUrl from '../node_modules/@thorvg/webcanvas/dist/thorvg.wasm?url';
+import threadWasmUrl from '../node_modules/@thorvg/webcanvas/dist/thread/thorvg.wasm?url';
 import fontUrl from './assets/font.ttf';
 import lifeIconUrl from './assets/life.svg';
 import spaceshipUrl from './assets/spaceship.json?url';
@@ -1121,10 +1122,9 @@ async function main(): Promise<void> {
 
   if (threadCount > 0) {
     // Use @thorvg/webcanvas/thread when multi-threading is enabled
-    const base = `${import.meta.env.BASE_URL}thorvg-thread/`;
-    const mod: { default: typeof ThorVG } = await import(/* @vite-ignore */ `${base}webcanvas.esm.js`);
-    TVG = await mod.default.init({
-      locateFile: (path: string) => `${base}${path}`,
+    const { default: ThorVGThread } = await import('@thorvg/webcanvas/thread');
+    TVG = await ThorVGThread.init({
+      locateFile: () => threadWasmUrl,
       renderer,
       threads: threadCount,
       onError,
