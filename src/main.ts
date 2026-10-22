@@ -13,6 +13,7 @@ import type {
 import wasmUrl from '../node_modules/@thorvg/webcanvas/dist/thorvg.wasm?url';
 import threadWasmUrl from '../node_modules/@thorvg/webcanvas/dist/thread/thorvg.wasm?url';
 import fontUrl from './assets/font.ttf';
+import haloUrl from './assets/halo.jpg';
 import lifeIconUrl from './assets/life.svg';
 import spaceshipUrl from './assets/spaceship.json?url';
 
@@ -70,6 +71,7 @@ let canvas: Canvas;
 
 interface GameAssets {
   font: Uint8Array;
+  halo: Uint8Array;
   lifeIcon: string;
   spaceship: string;
 }
@@ -106,11 +108,11 @@ class WarZone {
     this.galaxy[i] = layer;
   }
 
-  init(): void {
+  init(halo: Uint8Array): void {
     //background
-    const bg = new TVG.Shape();
-    bg.appendRect(0, 0, SWIDTH, SHEIGHT);
-    bg.fill(0, 0, 0);
+    const bg = new TVG.Picture();
+    bg.load(halo, { type: 'jpg' });
+    bg.size(SWIDTH, SHEIGHT);
     canvas.add(bg);
 
     //generate stars
@@ -791,7 +793,7 @@ class ThorJanitor {
 
     Enemy.BOUND = _S(80.0);
 
-    this.zone.init();
+    this.zone.init(assets.halo);
 
     this.clipper = new TVG.Shape();
     this.clipper.appendRect(this.zone.min.x, this.zone.min.y, this.zone.w() + 10, this.zone.h() + 10);
@@ -1098,18 +1100,19 @@ class ThorJanitor {
 
 async function main(): Promise<void> {
   const params = new URLSearchParams(location.search);
-  const renderer = (params.get('renderer') || 'sw') as RendererType;
+  const renderer = (params.get('renderer') || 'gl') as RendererType;
   const threadsParam = params.get('threads');
   const threadCount = !crossOriginIsolated
     ? 0
-    : threadsParam === null ? 4 : Math.max(0, Number(threadsParam) || 0);
+    : threadsParam === null ? 0 : Math.max(0, Number(threadsParam) || 0);
 
   SCALE = Math.min(window.innerWidth / WIDTH, window.innerHeight / HEIGHT);
   SWIDTH = Math.floor(WIDTH * SCALE);
   SHEIGHT = Math.floor(HEIGHT * SCALE);
 
-  const [fontBuf, lifeIcon, spaceship] = await Promise.all([
+  const [fontBuf, haloBuf, lifeIcon, spaceship] = await Promise.all([
     fetch(fontUrl).then((r) => r.arrayBuffer()),
+    fetch(haloUrl).then((r) => r.arrayBuffer()),
     fetch(lifeIconUrl).then((r) => r.text()),
     fetch(spaceshipUrl).then((r) => r.text()),
   ]);
@@ -1150,6 +1153,7 @@ async function main(): Promise<void> {
   const game = new ThorJanitor();
   game.content({
     font: new Uint8Array(fontBuf),
+    halo: new Uint8Array(haloBuf),
     lifeIcon,
     spaceship,
   });

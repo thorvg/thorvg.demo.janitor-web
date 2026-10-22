@@ -24,14 +24,14 @@ $ npm run preview   # serve the production build locally
 
 Switch renderer with a URL param:
 
-- Software: `?renderer=sw` (default)
-- WebGL: `?renderer=gl`
+- Software: `?renderer=sw`
+- WebGL: `?renderer=gl` (default)
 - WebGPU: `?renderer=wg`
 
 Enable multithreaded rendering:
 
-- On: `?threads=4` (default)
-- Off: `?threads=0`
+- On: `?threads=4`
+- Off: `?threads=0` (default)
 
 ## Controls
 
